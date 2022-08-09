@@ -56,6 +56,15 @@ generate_router! {
    }
 }
 
+#[macro_export]
+macro_rules! add_with {
+	($($id:ident : $t:ty), *, $block:block) => {
+		fn add_variadict($($id:$t,)*){
+			$block
+		}
+	};
+}
+
 fn main() {
     Data::hello_macro();
     Data::new();
@@ -68,5 +77,9 @@ fn main() {
     let ff = sql!(Select * from user_tb where user_tb.id='1');
     println!("{}", ff);
     testfun(10, 20.1);
-	index();
+    index();
+    add_with!(v0:f64, v1:i32 ,{
+      println!("result is {}", v0 + v1 as f64);
+    });
+    add_variadict(10.0,1);
 }
