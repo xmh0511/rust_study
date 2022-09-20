@@ -65,6 +65,10 @@ macro_rules! add_with {
 	};
 }
 
+add_with!(v0:f64, v1:i32 ,{
+	println!("result is {}", v0 + v1 as f64);
+})
+
 fn main() {
     Data::hello_macro();
     Data::new();
@@ -78,8 +82,5 @@ fn main() {
     println!("{}", ff);
     testfun(10, 20.1);
     index();
-    add_with!(v0:f64, v1:i32 ,{
-      println!("result is {}", v0 + v1 as f64);
-    });
-    add_variadict(10.0,1);
+    add_variadict(10.0,12);
 }
